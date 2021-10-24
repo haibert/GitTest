@@ -7,7 +7,7 @@ import { Text, View } from '../components/Themed'
 export default function TabTwoScreen() {
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>Tab WE WANT CONFLICT </Text>
+            <Text style={styles.title}>Tab WE WANT CONFLICT NOW </Text>
             <View
                 style={styles.separator}
                 lightColor="#eee"
