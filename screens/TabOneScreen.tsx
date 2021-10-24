@@ -10,7 +10,7 @@ export default function TabOneScreen({
 }: RootTabScreenProps<'TabOne'>) {
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>New Branch</Text>
+            <Text style={styles.title}>Changes from Master</Text>
             <View
                 style={styles.separator}
                 lightColor="#eee"
