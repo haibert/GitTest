@@ -1,20 +1,23 @@
 const { withSettingsGradle } = require('@expo/config-plugins')
 
-module.exports = (config) => {
-    if (!paths) {
-        throw new Error('withAndroidGradleSettings: No paths specified!')
-    }
+const addToGradleSettings = (content) => {
+    let newContent = content.concat(
+        "\ninclude ':react-native-fs\nproject(':react-native-fs').projectDir = new File(settingsDir, '../node_modules/react-native-fs/android')"
+    )
+    return newContent
+}
 
-    return withSettingsGradle(config, (config) => {
-        console.log(config)
-        // if (config.modResults.language === 'groovy') {
-        //     config.modResults.contents = addPickFirst(
-        //         config.modResults.contents,
-        //         paths
-        //     )
-        // } else {
-        //     throw new Error(
-        //         "withPickFirst: Can't add pickFirst(s) because app build.grandle is not groovy"
-        //     )
-        // }
+module.exports = (config) => {
+    return withSettingsGradle(config, async (config) => {
+        if (config.modResults.language === 'groovy') {
+            config.modResults.contents = addToGradleSettings(
+                config.modResults.contents
+            )
+        } else {
+            throw new Error(
+                "withPickFirst: Can't add pickFirst(s) because app build.grandle is not groovy"
+            )
+        }
         return config
+    })
+}
