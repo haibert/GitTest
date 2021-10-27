@@ -1,4 +1,4 @@
-const { withMainApplication } = require('@expo/config-plugins')
+const { withXcodeProject } = require('@expo/config-plugins')
 
 const addToMainApp = (content) => {
     const publicClassIndex = content.indexOf('public class MainApplication')
@@ -27,8 +27,12 @@ const addToMainApp = (content) => {
 }
 
 module.exports = (config) => {
-    return withMainApplication(config, async (config) => {
-        config.modResults.contents = addToMainApp(config.modResults.contents)
+    return withXcodeProject(config, async (config) => {
+        config.modResults
+        console.log(
+            '🚀 ~ file: withiOSXcodeProject.js ~ line 32 ~ returnwithXcodeProject ~ config.modResults',
+            config.modResults
+        )
         return config
     })
 }

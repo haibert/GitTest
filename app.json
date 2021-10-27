@@ -30,6 +30,10 @@
         "web": {
             "favicon": "./assets/images/favicon.png"
         },
-        "plugins": ["./withAndroidGradleSettings", "./withAndroidMainApp"]
+        "plugins": [
+            "./withAndroidGradleSettings",
+            "./withAndroidMainApp",
+            "./withIosXcodeProject.js"
+        ]
     }
 }
