@@ -2,7 +2,10 @@ const { withSettingsGradle } = require('@expo/config-plugins')
 
 const addToGradleSettings = (content) => {
     let newContent = content.concat(
-        "\ninclude ':react-native-fs\nproject(':react-native-fs').projectDir = new File(settingsDir, '../node_modules/react-native-fs/android')"
+        `
+        include ':react-native-fs'
+        project(':react-native-fs').projectDir = new File(settingsDir, '../node_modules/react-native-fs/android')
+`
     )
     return newContent
 }
