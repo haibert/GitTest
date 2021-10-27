@@ -9,7 +9,7 @@ const addToAppGradle = (content) => {
 }
 
 module.exports = (config) => {
-    return withAppBuildGradle(config, (config) => {
+    return withAppBuildGradle(config, async (config) => {
         if (config.modResults.language === 'groovy') {
             // console.log(config.modResults.contents)
             // config.modResults.contents = addToGradleSettings(

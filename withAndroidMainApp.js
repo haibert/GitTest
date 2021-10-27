@@ -33,7 +33,7 @@ const addToMainApp = (content) => {
 }
 
 module.exports = (config) => {
-    return withMainApplication(config, (config) => {
+    return withMainApplication(config, async (config) => {
         config.modResults.contents = addToMainApp(config.modResults.contents)
         return config
     })
