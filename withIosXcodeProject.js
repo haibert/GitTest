@@ -1,38 +1,34 @@
 const { withXcodeProject } = require('@expo/config-plugins')
 
-const addToMainApp = (content) => {
-    const publicClassIndex = content.indexOf('public class MainApplication')
+const resolvePath = (object, path, defaultValue) =>
+    path.split('.').reduce((o, p) => (o ? o[p] : defaultValue), object)
 
-    const regexpPackagingOptions = /\s*?(?=\/\*\*\n   \* Loads Flipper)/
-    const insertLocation = content.match(regexpPackagingOptions)
+const addToBuildPhase = (config) => {
+    let PBXShellScriptBuildPhase = resolvePath(
+        config.modResults.hash.project.objects.PBXShellScriptBuildPhase,
+        '00DD1BFF1BD5951E006B06BC'
+    )
+    PBXShellScriptBuildPhase.shellScript
+    console.log(
+        ' 12 PBXShellScriptBuildPhase.shellScript',
+        PBXShellScriptBuildPhase.shellScript
+    )
+    PBXShellScriptBuildPhase.shellScript =
+        "\"export NODE_BINARY=node\\n\\n# The project root by default is one level up from the ios directory\\nexport PROJECT_ROOT=\\\"$PROJECT_DIR\\\"/..\\n\\n`node --print \\\"require('path').dirname(require.resolve('react-native/package.json')) + '/scripts/react-native-xcode.sh'\\\"`\\n `node --print \\\"require('path').dirname(require.resolve('react-native/package.json')) + '/scripts/react-native-vector-image/strip_svgs.sh'\\\"`\\n\""
 
-    content =
-        content.substring(0, publicClassIndex - 1) +
-        'import com.rnfs.RNFSPackage; // <------- add package\n' +
-        content.substring(publicClassIndex)
+    console.log(
+        ' 12 PBXShellScriptBuildPhase.shellScript',
+        PBXShellScriptBuildPhase.shellScript
+    )
 
-    content =
-        content.substring(0, insertLocation.index) +
-        `
-        \n\t@Override
-        protected List<ReactPackage> getPackages() {
-          return Arrays.<ReactPackage>asList(
-            new MainReactPackage(), // <---- add comma
-            new RNFSPackage() // <---------- add package
-          );
-        ` +
-        content.substring(insertLocation.index, content.length)
+    config.modResults.hash.project.objects.PBXShellScriptBuildPhase
 
-    return content
+    return config
 }
-
+const string = '/"test"'
 module.exports = (config) => {
     return withXcodeProject(config, async (config) => {
-        config.modResults
-        console.log(
-            '🚀 ~ file: withiOSXcodeProject.js ~ line 32 ~ returnwithXcodeProject ~ config.modResults',
-            config.modResults
-        )
+        addToBuildPhase(config)
         return config
     })
 }
