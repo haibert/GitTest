@@ -12,14 +12,14 @@ export default function TabOneScreen({
 }: RootTabScreenProps<'TabOne'>) {
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>Changes from Master</Text>
+            <Text style={styles.title}>Tab 1</Text>
             <View
                 style={styles.separator}
                 lightColor="#eee"
                 darkColor="rgba(255,255,255,0.1)"
             />
             <VectorImage
-                source={require('../assets/images/favicon.png')}
+                source={require('../assets/images/Camera.svg')}
                 style={{ borderWidth: 1, borderColor: 'white' }}
             />
         </View>
