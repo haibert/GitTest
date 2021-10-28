@@ -5,6 +5,8 @@ import EditScreenInfo from '../components/EditScreenInfo'
 import { Text, View } from '../components/Themed'
 import { RootTabScreenProps } from '../types'
 
+import VectorImage from 'react-native-vector-image'
+
 export default function TabOneScreen({
     navigation,
 }: RootTabScreenProps<'TabOne'>) {
@@ -16,7 +18,10 @@ export default function TabOneScreen({
                 lightColor="#eee"
                 darkColor="rgba(255,255,255,0.1)"
             />
-            <EditScreenInfo path="/screens/TabOneScreen.tsx" />
+            <VectorImage
+                source={require('../assets/images/favicon.png')}
+                style={{ borderWidth: 1, borderColor: 'white' }}
+            />
         </View>
     )
 }
