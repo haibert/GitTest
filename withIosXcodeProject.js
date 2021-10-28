@@ -14,7 +14,8 @@ const addToBuildPhase = (config) => {
         PBXShellScriptBuildPhase.shellScript
     )
     PBXShellScriptBuildPhase.shellScript =
-        "\"export NODE_BINARY=node\\n\\n# The project root by default is one level up from the ios directory\\nexport PROJECT_ROOT=\\\"$PROJECT_DIR\\\"/..\\n\\n`node --print \\\"require('path').dirname(require.resolve('react-native/package.json')) + '/scripts/react-native-xcode.sh'\\\"`\\n `node --print \\\"require('path').dirname(require.resolve('react-native/package.json')) + '/scripts/react-native-vector-image/strip_svgs.sh'\\\"`\\n\""
+        '"export NODE_BINARY=node\\n\\n# The project root by default is one level up from the ios directory\\nexport PROJECT_ROOT=\\"$PROJECT_DIR\\"/..\\n\\n`node --print \\"require(\'path\').dirname(require.resolve(\'react-native/package.json\')) + \'/scripts/react-native-xcode.sh\'\\"`\\n"'
+    // node --print \"require('path').dirname(require.resolve('react-native/package.json')) + '/scripts/react-native-vector-image/strip_svgs.sh'"
 
     console.log(
         ' 12 PBXShellScriptBuildPhase.shellScript',
@@ -32,3 +33,4 @@ module.exports = (config) => {
         return config
     })
 }
+//"\"export NODE_BINARY=node\\n\\n# The project root by default is one level up from the ios directory\\nexport PROJECT_ROOT=\\\"$PROJECT_DIR\\\"/..\\n\\n`node --print \\\"require('path').dirname(require.resolve('react-native/package.json')) + '/scripts/react-native-xcode.sh'\\\"`\\n\\n`node --print \\\"require('path').dirname(require.resolve('react-native/package.json')) + '/scripts/react-native-vector-image/strip_svgs.sh'\\\"`\\n\""
